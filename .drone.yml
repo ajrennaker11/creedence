@@ -1,0 +1,10 @@
+pipeline:
+  build-push-docker-dev:
+    when:
+      branch: master
+      event: [ pull_request, push ]
+    image: cglclouddev-clouddev-docker-registry.jfrog.io/drone-plugin-cgl-docker:2.0.0
+    custom_dns: [ 10.12.168.2 ]
+    repo: drone-chef
+    tags: ${DRONE_COMMIT_SHA:0:7}
+    max_tries: 50
